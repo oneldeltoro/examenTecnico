@@ -1,4 +1,4 @@
-package com.prueba.tecnica.microservicio.domain.models;
+package com.prueba.tecnica.microservicio.domain.models.base;
 
 import jakarta.persistence.*;
 import lombok.*;

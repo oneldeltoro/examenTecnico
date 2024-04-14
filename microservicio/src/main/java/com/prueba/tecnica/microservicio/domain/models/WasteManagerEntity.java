@@ -1,15 +1,13 @@
 package com.prueba.tecnica.microservicio.domain.models;
 
+import com.prueba.tecnica.microservicio.domain.models.base.BaseIdEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,10 +15,8 @@ import java.util.List;
 @EqualsAndHashCode
 @Data
 @NoArgsConstructor
-public class WasteManagerEntity implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class WasteManagerEntity extends BaseIdEntity implements Serializable {
+
     @Column(name = "nombre", nullable = false)
     private String nombre;
     @Column(name = "nif", nullable = false)
@@ -34,12 +30,5 @@ public class WasteManagerEntity implements Serializable {
     private Boolean isEnabled = Boolean.TRUE;
     @Version
     private Long version = 0L;
-    @CreationTimestamp
-    @Temporal(TemporalType.DATE)
-    @Column(name = "created_date", insertable = false, updatable = false)
-    private Date createdDate;
-    @UpdateTimestamp
-    @Temporal(TemporalType.DATE)
-    @Column(name = "last_modified_date", insertable = false, updatable = false)
-    private Date lastModifiedDate;
+
 }
