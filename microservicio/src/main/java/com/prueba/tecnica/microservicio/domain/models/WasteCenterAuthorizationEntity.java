@@ -1,28 +1,27 @@
-package com.prueba.tecnica.microservicio.models;
+package com.prueba.tecnica.microservicio.domain.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import java.io.Serializable;
 import java.util.Date;
+
 @Entity
-@Table(name = "waste_manager_address_entity")
+@Table(name = "waste_center_authorization_entity")
 @EqualsAndHashCode
-@Data
-@NoArgsConstructor
-public class WasteManagerAddressEntity implements Serializable {
+public class WasteCenterAuthorizationEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String direccion;
-    private Boolean isEnabled = Boolean.TRUE;
-    @Version
-    private Long version = 0L;
+    @Column(name = "auth_number")
+    private String authorizationNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "waste_manager_entity_id", nullable = false)
+    private WasteManagerEntity entity;
+
     @CreationTimestamp
     @Temporal(TemporalType.DATE)
     @Column(name = "created_date", insertable = false, updatable = false)
