@@ -2,6 +2,7 @@ package com.prueba.tecnica.microservicio.domain.models.base;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,11 +11,13 @@ import java.util.Date;
 
 @Getter
 @Setter
-@MappedSuperclass
 @ToString
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@EqualsAndHashCode
-public abstract class BaseIdEntity implements Serializable {
+@NoArgsConstructor
+@AllArgsConstructor
+@MappedSuperclass
+@SuperBuilder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class BaseIdEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false)

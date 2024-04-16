@@ -2,20 +2,22 @@ package com.prueba.tecnica.microservicio.domain.models;
 
 import com.prueba.tecnica.microservicio.domain.models.base.BaseIdEntity;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 
 import java.io.Serializable;
-
-@Entity
-@Table(name = "waste_manager_address_entity")
-@EqualsAndHashCode
-@Data
+@Getter
+@Setter
+@ToString(callSuper = true)
 @NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = true)
+@Entity
+@Table(name = "WASTE_MANAGER_ADDRESS_ENTITY")
 public class WasteManagerAddressEntity extends BaseIdEntity implements Serializable {
-
+    @Column(name = "direccion", nullable = false)
     private String direccion;
     private Boolean isEnabled = Boolean.TRUE;
     @Version

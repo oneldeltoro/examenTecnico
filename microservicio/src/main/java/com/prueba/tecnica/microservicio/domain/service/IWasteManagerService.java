@@ -1,15 +1,15 @@
 package com.prueba.tecnica.microservicio.domain.service;
 
-import com.prueba.tecnica.microservicio.domain.models.dto.WasteManagerEntityDto;
-import com.prueba.tecnica.microservicio.domain.response.ServicesResponse;
-import org.springframework.http.ResponseEntity;
+import com.prueba.tecnica.microservicio.application.request.WasteManagerEntityDto;
+import com.prueba.tecnica.microservicio.application.response.ServicesResponse;
 import org.springframework.validation.BindingResult;
 
 public interface IWasteManagerService {
     ServicesResponse create (WasteManagerEntityDto wasteManagerDto,
-                             BindingResult bindingResult ) throws Exception;
+                             BindingResult bindingResult );
     ServicesResponse update( WasteManagerEntityDto dto,
-                           BindingResult bindingResult ) throws Exception;
-    ServicesResponse findById(long wasteManagerId) throws Exception;
-    void deleteById(long wasteManagerId) throws Exception;
+                           BindingResult bindingResult ) ;
+    ServicesResponse findById(long wasteManagerId) ;
+    ServicesResponse getAll();
+    ServicesResponse deleteById(long wasteManagerId) ;
 }
