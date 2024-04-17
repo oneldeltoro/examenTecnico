@@ -40,7 +40,7 @@ public class WasteManagerServiceImpl implements IWasteManagerService {
             response.estado(HttpStatus.BAD_REQUEST.value()).mensaje("error de validaciones de entidad").datos(bindingResult.getAllErrors());
         else {
             try {
-                var addressDO= addressRepository.save(addressMapper.wasteManagerAddressEntityDtoTOWasteManagerAddressEntity(dto.getWasteManagerAddressEntity()));
+                var addressDO = addressRepository.save(addressMapper.wasteManagerAddressEntityDtoTOWasteManagerAddressEntity(dto.getWasteManagerAddressEntity()));
                 var entidad = mapper.wasteManagerEntityDtoTOWasteManagerEntity(dto);
                 entidad.setIdAddress(addressDO.getId());
                 repository.save(entidad);
@@ -59,19 +59,22 @@ public class WasteManagerServiceImpl implements IWasteManagerService {
     @SneakyThrows
     public ServicesResponse update(WasteManagerEntityDto dto, BindingResult bindingResult) {
         var response = ServicesResponse.builder();
-        try {
-            Optional<WasteManagerEntity> resultado = repository.findById(dto.getId());
-            response = resultado.map(e -> {
-                mapper.updateWasteManagerEntityFromWasteManagerEntityDto(dto, e);
-                repository.save(e);
-                var result = mapper.wasteManagerEntityTOWasteManagerEntityDto(e);
-                return ServicesResponse.builder().estado(HttpStatus.OK.value()).mensaje("ok").datos(result);
-            }).orElseGet(() -> ServicesResponse.builder().estado(HttpStatus.NOT_FOUND.value()).mensaje("Not Found").datos(dto.getId()));
-        } catch (Exception e) {
-            log.error("error en funcion update, debido a: {} ", e.getMessage());
-            response.estado(HttpStatus.BAD_REQUEST.value()).mensaje(e.getMessage());
+        if (bindingResult.hasErrors())
+            response.estado(HttpStatus.BAD_REQUEST.value()).mensaje("error de validaciones de entidad").datos(bindingResult.getAllErrors());
+        else {
+            try {
+                Optional<WasteManagerEntity> resultado = repository.findById(dto.getId());
+                response = resultado.map(e -> {
+                    mapper.updateWasteManagerEntityFromWasteManagerEntityDto(dto, e);
+                    repository.save(e);
+                    var result = mapper.wasteManagerEntityTOWasteManagerEntityDto(e);
+                    return ServicesResponse.builder().estado(HttpStatus.OK.value()).mensaje("ok").datos(result);
+                }).orElseGet(() -> ServicesResponse.builder().estado(HttpStatus.NOT_FOUND.value()).mensaje("Not Found").datos(dto.getId()));
+            } catch (Exception e) {
+                log.error("error en funcion update, debido a: {} ", e.getMessage());
+                response.estado(HttpStatus.BAD_REQUEST.value()).mensaje(e.getMessage());
+            }
         }
-
         return response.build();
     }
 

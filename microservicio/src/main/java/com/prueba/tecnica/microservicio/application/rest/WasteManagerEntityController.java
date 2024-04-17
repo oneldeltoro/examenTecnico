@@ -20,7 +20,6 @@ public class WasteManagerEntityController {
     IWasteManagerService managerService;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    //@ApiOperation(value = "Obtener listado de Entidads", notes = "Retorna una lista de Entidads")
     public ResponseEntity<ServicesResponse> getAllEntidades() {
         log.debug("invocando servicio para obtener listado de Entidades");
         ServicesResponse resultado = managerService.getAll();
@@ -28,7 +27,6 @@ public class WasteManagerEntityController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    // @ApiOperation(value = "Obtener Entidad", notes = "Retorna una Entidad por Id")
     public ResponseEntity<ServicesResponse> getEntidad(
             @PathVariable(name = "id") Long identificador) {
         log.debug("invocando servicio para obtener una Entidad");
@@ -37,7 +35,6 @@ public class WasteManagerEntityController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    // @ApiOperation(value = "Guardar Entidad", notes = "Almacena una Entidad")
     public ResponseEntity<ServicesResponse> postEntidad(@RequestBody @Valid WasteManagerEntityDto dto, BindingResult bindingResult) {
         log.debug("invocando servicio para almacenar Entidad");
         ServicesResponse stored = managerService.create(dto, bindingResult);
@@ -45,7 +42,6 @@ public class WasteManagerEntityController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
-//    @ApiOperation(value = "Modificar Entidad", notes = "Almacena una Entidad modificada")
     public ResponseEntity<ServicesResponse> putEntidad( @RequestBody @Valid WasteManagerEntityDto dto, BindingResult bindingResult) {
         log.debug("invocando servicio para modificar una Entidad");
         ServicesResponse update = managerService.update(dto, bindingResult);
@@ -54,7 +50,6 @@ public class WasteManagerEntityController {
 
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    // @ApiOperation(value = "Elimina una Entidad", notes = "Elimina una Entidad por Id")
     public ResponseEntity deleteEntidad(
             @PathVariable(name = "id") Long identificador) {
         log.debug("invocando servicio para eliminar una Entidad");

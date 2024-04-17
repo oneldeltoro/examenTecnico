@@ -6,10 +6,10 @@ import org.springframework.validation.BindingResult;
 
 public interface IWasteManagerAddressService {
     ServicesResponse create (WasteManagerAddressEntityDto wasteManagerDto,
-                             BindingResult bindingResult ) throws Exception;
+                             BindingResult bindingResult );
     ServicesResponse update( WasteManagerAddressEntityDto dto,
-                           BindingResult bindingResult ) throws Exception;
-    ServicesResponse findById(long wasteManagerAddressId) throws Exception;
-    void deleteById(long wasteManagerAddressId) throws Exception;
-    ServicesResponse getAll() throws Exception;
+                           BindingResult bindingResult ) ;
+    ServicesResponse findById(long wasteManagerAddressId) ;
+    ServicesResponse deleteById(long wasteManagerAddressId) ;
+    ServicesResponse getAll() ;
 }
