@@ -1,0 +1,53 @@
+tomcat/
+*.class
+.idea/*
+.mvn/*
+idea/*
+*.iml
+
+# Build output directies #
+##########################
+/target
+*/target
+.target
+/build
+*/build
+*target*
+*.jar
+*.war
+*.ear
+*.class
+
+# Eclipse specific files/directories #
+######################################
+.settings
+bin/*
+*.factorypath
+*.pydevproject
+.project
+.metadata
+bin/**
+/bin/
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+settings/**
+.settings/**
+*.settings/**
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+*/.idea/*
+*/bin/*
+*/.mvn/*
+*/mvnw
+*/mvnw*
